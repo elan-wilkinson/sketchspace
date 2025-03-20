@@ -29,8 +29,8 @@ public class A_star : MonoBehaviour
         Node[] nodes = GameObject.FindObjectsByType<Node>(FindObjectsSortMode.None);
         foreach (Node node in nodes)
         {
-            //node.goalDist = Mathf.Abs(node.position.x - start.position.x) + Mathf.Abs(node.position.z - start.position.z);
-            node.goalDist = Vector3.Distance(node.transform.position, end.transform.position);
+            
+            node.goalDist = Mathf.Pow(Vector3.Distance(node.transform.position, end.transform.position),2.0f);
         }
 
     }
