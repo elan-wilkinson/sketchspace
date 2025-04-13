@@ -12,17 +12,10 @@ public class A_star : MonoBehaviour
     public Node start;
     public Node end;
 
-    public Material red, yellow, blue;
+    //public Material red, yellow, blue;
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine("FindTheWay");
-        }
-    }
+
 
     void CalHAll()
     {
@@ -35,7 +28,7 @@ public class A_star : MonoBehaviour
 
     }
 
-    IEnumerator FindTheWay()
+    public IEnumerator FindTheWay()
     {
 
         Dictionary<Node, float> visited = new();
@@ -47,7 +40,7 @@ public class A_star : MonoBehaviour
         visited.Add(start, start.goalDist);
         List<Node> snewNeighbors = ReturnNeighbors(start);
         start.visited = true;
-        start.meshRenderer.sharedMaterial = red;
+        //start.meshRenderer.sharedMaterial = red;
         start.cost = 0;
 
         foreach (Node node in snewNeighbors)
@@ -56,7 +49,7 @@ public class A_star : MonoBehaviour
             node.gh = node.cost + node.goalDist;
             node.pathPar = start;
             notVisited.Add(node, node.gh);
-            node.meshRenderer.sharedMaterial = yellow;
+            //node.meshRenderer.sharedMaterial = yellow;
         }
         yield return new WaitForSeconds(0.1f);
 
@@ -64,7 +57,7 @@ public class A_star : MonoBehaviour
         {
 
             Node bestOption = Lowest(notVisited);
-            bestOption.meshRenderer.sharedMaterial = red;
+            //bestOption.meshRenderer.sharedMaterial = red;
             bestOption.visited = true;
             visited.Add(bestOption, bestOption.gh);
             notVisited.Remove(bestOption); // what if we have two identical ghs
@@ -79,7 +72,6 @@ public class A_star : MonoBehaviour
                     goal = node;
                     node.pathPar = bestOption;
                     StopAllCoroutines();
-                    VisualizePath();
                 }
                 node.cost = bestOption.cost + 1;
                 node.gh = node.cost + node.goalDist;
@@ -87,7 +79,7 @@ public class A_star : MonoBehaviour
                 {
                     notVisited.Add(node, node.gh);
                     node.pathPar = bestOption;
-                    node.meshRenderer.sharedMaterial = yellow;
+                    //node.meshRenderer.sharedMaterial = yellow;
 
                 }
                 if (notVisited.ContainsKey(node))
@@ -108,7 +100,7 @@ public class A_star : MonoBehaviour
 
                
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return null;//new WaitForSeconds(0.1f);
         }
 
 
@@ -117,13 +109,99 @@ public class A_star : MonoBehaviour
 
     }
 
-    void VisualizePath()
+    public void FindPath()
     {
+        Dictionary<Node, float> visited = new();
+        Dictionary<Node, float> notVisited = new();
+        CalHAll();
+        Node goal = null;
+
+        start.visited = true;
+        visited.Add(start, start.goalDist);
+        List<Node> snewNeighbors = ReturnNeighbors(start);
+        start.visited = true;
+        //start.meshRenderer.sharedMaterial = red;
+        start.cost = 0;
+
+        foreach (Node node in snewNeighbors)
+        {
+            node.cost = start.cost + 1.0f;
+            node.gh = node.cost + node.goalDist;
+            node.pathPar = start;
+            notVisited.Add(node, node.gh);
+            //node.meshRenderer.sharedMaterial = yellow;
+        }
+
+        while (!goal)
+        {
+
+            Node bestOption = Lowest(notVisited);
+            //bestOption.meshRenderer.sharedMaterial = red;
+            bestOption.visited = true;
+            visited.Add(bestOption, bestOption.gh);
+            notVisited.Remove(bestOption); // what if we have two identical ghs
+
+            List<Node> newNeighbors = ReturnNeighbors(bestOption);
+
+            foreach (Node node in newNeighbors)
+            {
+                if (node == end)
+                {
+                    goal = node;
+                    node.pathPar = bestOption;
+                    StopAllCoroutines();
+                }
+                node.cost = bestOption.cost + 1;
+                node.gh = node.cost + node.goalDist;
+                if (!notVisited.ContainsKey(node) && !node.visited)
+                {
+                    notVisited.Add(node, node.gh);
+                    node.pathPar = bestOption;
+                    //node.meshRenderer.sharedMaterial = yellow;
+
+                }
+                if (notVisited.ContainsKey(node))
+                {
+                    if (node.gh < notVisited[node])
+                    {
+                        notVisited[node] = node.gh;
+                        node.pathPar = bestOption;
+                    }
+                    else
+                        node.gh = notVisited[node];
+                }
+                if (node.visited && node.gh < visited[node])
+                {
+                    visited[node] = node.gh;
+                    node.pathPar = bestOption;
+                }
+
+
+            }
+        }
+    }
+
+    public void VisualizePath(Transform plane, LineRenderer lr)
+    {
+        Stack<Node> bestPathNodes = new();
         Node par = end.pathPar;
+        bestPathNodes.Push(par);
         while (par != null)
         {
-            par.meshRenderer.sharedMaterial = blue;
+            //par.meshRenderer.sharedMaterial = blue;
             par = par.pathPar;
+            if (par != null)
+                bestPathNodes.Push(par);
+        }
+        lr.positionCount = bestPathNodes.Count;
+        int i = 0;
+        Debug.Log("number of best pathnodes: " + bestPathNodes.Count);
+        while (bestPathNodes.Count > 0)
+        {
+            Debug.Log("i " + i);
+            Node node = bestPathNodes.Pop();
+            lr.SetPosition(i, plane.InverseTransformPoint(node.transform.position));
+            i++;
         }
     }
 

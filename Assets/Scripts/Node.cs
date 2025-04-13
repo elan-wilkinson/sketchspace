@@ -17,6 +17,18 @@ public class Node : MonoBehaviour
     public Node back;
     public Node up;
     public Node down;
+
+    public Node upperFrontLeft;
+    public Node upperFrontRight;
+    public Node upperRearLeft;
+    public Node upperRearRight;
+
+    public Node lowerFrontLeft;
+    public Node lowerFrontRight;
+    public Node lowerRearRight;
+    public Node lowerRearLeft;
+
+
     public float gh;
     public Material mat;
     public MeshRenderer meshRenderer;

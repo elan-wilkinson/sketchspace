@@ -1304,8 +1304,8 @@ MonoBehaviour:
   backgroundObj: {fileID: 228451145}
   backgroundSR: {fileID: 228451146}
   captureCamera: {fileID: 1316566968}
-  saveFolder: C:\Users\elanw\Files\USD\Capstone\FinalProject\SynthData
-  csvFilePath: C:\Users\elanw\Files\USD\Capstone\FinalProject\SynthData\labels.csv
+  saveFolder: C:\Users\elanw\Files\USD\Capstone\ValidData
+  csvFilePath: C:\Users\elanw\Files\USD\Capstone\ValidData\labels.csv
   doods:
   - {fileID: 6152116}
   - {fileID: 1956695561}
@@ -1334,7 +1334,8 @@ MonoBehaviour:
   - {fileID: 2059274437}
   - {fileID: 1218011935}
   - {fileID: 1866829485}
-  imageCount: 10
+  imgCount: 1000
+  imageCount: 1000
 --- !u!1 &1322701971
 GameObject:
   m_ObjectHideFlags: 0

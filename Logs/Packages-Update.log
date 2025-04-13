@@ -46,3 +46,11 @@ The following packages were updated:
   com.unity.xr.arfoundation from version 6.0.3 to 6.0.5
   com.unity.xr.arkit from version 6.0.3 to 6.0.5
   com.unity.xr.interaction.toolkit from version 3.0.6 to 3.0.7
+
+=== Sat Apr  5 13:23:37 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.inputsystem from version 1.13.0 to 1.14.0
