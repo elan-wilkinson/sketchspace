@@ -1,0 +1,13 @@
+nothing
+helicopter
+hospital
+mountain
+skull
+skyscraper
+tractor
+traffic_lights
+vans
+trees
+cloud
+fire_truck
+campfire
