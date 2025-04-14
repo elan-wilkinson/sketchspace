@@ -11,12 +11,6 @@ public class GridGenerator : MonoBehaviour
     public float height;
     public List<Node> allGendNodes = new List<Node>();
 
-    void Start()
-    {
-        
-    }
-
-
     public void CreateGrid(
         Vector3 bottomtopLeft,
         Vector3 bottomtopRight,
@@ -30,18 +24,6 @@ public class GridGenerator : MonoBehaviour
       )
     {
         Transform newPar = par.transform;
-        /*Vector3 bottomtopLeft = cam.ScreenToWorldPoint(new Vector3(0,Screen.height,cameraDefaultDist));
-        Vector3 bottomtopRight = cam.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,cameraDefaultDist));
-        Vector3 bottombottomRight = cam.ScreenToWorldPoint(new Vector3(Screen.width,0,cameraDefaultDist));
-        Vector3 bottombottomLef = cam.ScreenToWorldPoint(new Vector3(0,0.0f,cameraDefaultDist));
-        Vector3 upperTopLef = cam.ScreenToWorldPoint(new Vector3(0, Screen.height, cameraDefaultDist - height));
-        Vector3 upperTopRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cameraDefaultDist - height));
-        Vector3 upperbottomRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, 0, cameraDefaultDist-height));
-        Vector3 upperbottomLef = cam.ScreenToWorldPoint(new Vector3(0, 0.0f, cameraDefaultDist - height));
-        */
-
-
-
 
         int nodesPerRow = (int)(Vector3.Distance(bottomtopLeft, bottomtopRight) / nodeSize);
         int nodesPerCol = (int)(Vector3.Distance(bottombottomLef, bottombottomRight) / nodeSize);
@@ -58,7 +40,7 @@ public class GridGenerator : MonoBehaviour
             {
                 for (int k = 0; k < nodesPerCol; k++)
                 {
-                    GameObject newNode = new GameObject();//GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    GameObject newNode = new GameObject();
 
                     newNode.transform.parent = newPar;
                     newNode.transform.localScale *= 0.1f;
@@ -83,9 +65,6 @@ public class GridGenerator : MonoBehaviour
                             nodeGraph[L, i, k] = n;
                             newNode.transform.position = Vector3.zero;
                             n.meshRenderer = newNode.GetComponent<MeshRenderer>();
-
-                            //float rowLerp = (i == 0) ? 0 : (i == nodesPerRow - 1) ? 1 : i / nodesPerRow;
-                            //float colLerp = (k == 0) ? 0 : (k == nodesPerCol - 1) ? 1 : k / nodesPerCol;
 
                             float rowLerp = ((float)i / nodesPerRow) + (nodeSize / 4.0f / nodesPerRow);
                             float colLerp = ((float)k / nodesPerCol) + (nodeSize / 4.0f / nodesPerCol);

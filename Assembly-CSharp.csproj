@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4EFD3E9B-15CD-CDB4-1779-9E9B48A4ADEE}</ProjectGuid>
+    <ProjectGuid>{92851428-64C7-600D-283E-3F4862E92F50}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -64,6 +64,7 @@
     <Compile Include="Assets\Samples\Sentis\2.1.2\Read output asynchronously\AsyncReadback.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\UI\Scripts\CutoutMaskUI.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\ARTemplateMenuManager.cs" />
+    <Compile Include="Assets\Scripts\RunYOLO.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\ARFeatheredPlaneMeshVisualizerCompanion.cs" />
     <Compile Include="Assets\Scripts\A_star.cs" />
     <Compile Include="Assets\Scripts\Randomizer.cs" />
@@ -71,7 +72,6 @@
     <Compile Include="Assets\Samples\Sentis\2.1.2\Convert textures to tensors\TextureToTensor.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\GoalManager.cs" />
     <Compile Include="Assets\Scripts\ImageDetection.cs" />
-    <Compile Include="Assets\HuggingFaceExample\RunYOLO.cs" />
     <Compile Include="Assets\Scripts\App_Manager.cs" />
     <Compile Include="Assets\WebCamTest.cs" />
     <Compile Include="Assets\Samples\Sentis\2.1.2\Run a model\ModelExecution.cs" />
@@ -1431,27 +1431,27 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="EnoxSoftware.OpenCVForUnity.csproj">
-      <Project>{E6476929-771A-27E4-84D3-FED06720FD2A}</Project>
+      <Project>{E052425B-BC31-AFB2-EE35-F1E90F5EE588}</Project>
       <Name>EnoxSoftware.OpenCVForUnity</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.ARStarterAssets.Editor.csproj">
-      <Project>{48F1FE2A-C76A-4E6A-8197-EB0E5F7B4BCF}</Project>
+      <Project>{4A727AD3-7D0F-FCB3-7D01-1103167694DD}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.ARStarterAssets.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="EnoxSoftware.OpenCVForUnity.Editor.csproj">
-      <Project>{9A792685-7D5D-E266-1666-7BF5AFC0F91A}</Project>
+      <Project>{E4170CAA-B512-FAD2-BE10-E3E5AF9743ED}</Project>
       <Name>EnoxSoftware.OpenCVForUnity.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj">
-      <Project>{14B037E8-A6E6-43DE-3CD3-0601ABB9CE57}</Project>
+      <Project>{5A9C2E79-AEDC-80CE-1C14-C69440EB21C1}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj">
-      <Project>{133B23E6-5DA6-E4E6-DA7F-D3A9E1E4D74D}</Project>
+      <Project>{93FD1416-6F08-DD6E-858D-C1925122224F}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.ARStarterAssets.csproj">
-      <Project>{AFD4E0B2-66DF-0A31-EF63-CF80E5E83B1F}</Project>
+      <Project>{4375F24D-63D6-4462-4C8D-8155ADA90CE5}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.ARStarterAssets</Name>
     </ProjectReference>
   </ItemGroup>

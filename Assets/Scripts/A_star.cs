@@ -7,22 +7,14 @@ using System.Runtime.CompilerServices;
 
 public class A_star : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     public Node start;
     public Node end;
-
-    //public Material red, yellow, blue;
-
-
-
 
     void CalHAll()
     {
         Node[] nodes = GameObject.FindObjectsByType<Node>(FindObjectsSortMode.None);
         foreach (Node node in nodes)
-        {
-            
+        {         
             node.goalDist = Mathf.Pow(Vector3.Distance(node.transform.position, end.transform.position),2.0f);
         }
 
@@ -40,7 +32,6 @@ public class A_star : MonoBehaviour
         visited.Add(start, start.goalDist);
         List<Node> snewNeighbors = ReturnNeighbors(start);
         start.visited = true;
-        //start.meshRenderer.sharedMaterial = red;
         start.cost = 0;
 
         foreach (Node node in snewNeighbors)
@@ -49,18 +40,15 @@ public class A_star : MonoBehaviour
             node.gh = node.cost + node.goalDist;
             node.pathPar = start;
             notVisited.Add(node, node.gh);
-            //node.meshRenderer.sharedMaterial = yellow;
         }
         yield return new WaitForSeconds(0.1f);
 
         while (!goal)
         {
-
             Node bestOption = Lowest(notVisited);
-            //bestOption.meshRenderer.sharedMaterial = red;
             bestOption.visited = true;
             visited.Add(bestOption, bestOption.gh);
-            notVisited.Remove(bestOption); // what if we have two identical ghs
+            notVisited.Remove(bestOption);
 
             List<Node> newNeighbors = ReturnNeighbors(bestOption);
             yield return new WaitForSeconds(0.1f);
@@ -79,8 +67,6 @@ public class A_star : MonoBehaviour
                 {
                     notVisited.Add(node, node.gh);
                     node.pathPar = bestOption;
-                    //node.meshRenderer.sharedMaterial = yellow;
-
                 }
                 if (notVisited.ContainsKey(node))
                 {
@@ -96,17 +82,10 @@ public class A_star : MonoBehaviour
                 {
                     visited[node] = node.gh;
                     node.pathPar = bestOption;
-                }
-
-               
+                }         
             }
-            yield return null;//new WaitForSeconds(0.1f);
+            yield return null;
         }
-
-
-
-
-
     }
 
     public void FindPath()
@@ -120,7 +99,6 @@ public class A_star : MonoBehaviour
         visited.Add(start, start.goalDist);
         List<Node> snewNeighbors = ReturnNeighbors(start);
         start.visited = true;
-        //start.meshRenderer.sharedMaterial = red;
         start.cost = 0;
 
         foreach (Node node in snewNeighbors)
@@ -129,17 +107,15 @@ public class A_star : MonoBehaviour
             node.gh = node.cost + node.goalDist;
             node.pathPar = start;
             notVisited.Add(node, node.gh);
-            //node.meshRenderer.sharedMaterial = yellow;
         }
 
         while (!goal)
         {
 
             Node bestOption = Lowest(notVisited);
-            //bestOption.meshRenderer.sharedMaterial = red;
             bestOption.visited = true;
             visited.Add(bestOption, bestOption.gh);
-            notVisited.Remove(bestOption); // what if we have two identical ghs
+            notVisited.Remove(bestOption);
 
             List<Node> newNeighbors = ReturnNeighbors(bestOption);
 
@@ -157,8 +133,6 @@ public class A_star : MonoBehaviour
                 {
                     notVisited.Add(node, node.gh);
                     node.pathPar = bestOption;
-                    //node.meshRenderer.sharedMaterial = yellow;
-
                 }
                 if (notVisited.ContainsKey(node))
                 {
@@ -175,8 +149,6 @@ public class A_star : MonoBehaviour
                     visited[node] = node.gh;
                     node.pathPar = bestOption;
                 }
-
-
             }
         }
     }
@@ -188,17 +160,17 @@ public class A_star : MonoBehaviour
         bestPathNodes.Push(par);
         while (par != null)
         {
-            //par.meshRenderer.sharedMaterial = blue;
+
             par = par.pathPar;
             if (par != null)
                 bestPathNodes.Push(par);
         }
         lr.positionCount = bestPathNodes.Count;
         int i = 0;
-        Debug.Log("number of best pathnodes: " + bestPathNodes.Count);
+
         while (bestPathNodes.Count > 0)
         {
-            Debug.Log("i " + i);
+
             Node node = bestPathNodes.Pop();
             lr.SetPosition(i, plane.InverseTransformPoint(node.transform.position));
             i++;
@@ -221,7 +193,6 @@ public class A_star : MonoBehaviour
         if (start.down != null)
             neighbors.Add(start.down);
         return neighbors;
-
         }
 
         static Node Lowest(Dictionary<Node, float> dict)
